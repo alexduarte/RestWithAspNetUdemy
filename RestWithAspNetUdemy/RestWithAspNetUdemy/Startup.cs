@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RestWithAspNetUdemy.Infra.Context;
+using RestWithAspNetUdemy.Services;
+using RestWithAspNetUdemy.Services.Interfaces;
 
 namespace RestWithAspNetUdemy
 {
@@ -32,6 +29,9 @@ namespace RestWithAspNetUdemy
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithAspNetUdemy", Version = "v1" });
             });
+
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddDbContext<SQLContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:db_rest_with_azure"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
