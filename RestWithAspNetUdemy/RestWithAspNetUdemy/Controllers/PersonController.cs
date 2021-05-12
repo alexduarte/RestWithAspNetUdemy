@@ -31,9 +31,9 @@ namespace RestWithAspNetUdemy.Controllers
         }
 
         [HttpGet()]
-        public IActionResult Get(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
         {
-            var persons = _personService.Get(cancellationToken);
+            var persons = await _personService.GetAsync(cancellationToken);
 
             if (!persons.Any())
                 return NoContent();
@@ -64,7 +64,9 @@ namespace RestWithAspNetUdemy.Controllers
         [HttpDelete("{id:Guid}")]
         public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
-            await _personService.DeleteAsync(id, cancellationToken);           
+            var deleted = await _personService.DeleteAsync(id, cancellationToken);
+            if (!deleted)
+                return BadRequest("Error: Person not deleted! Please, try again");
 
             return Accepted();
         }

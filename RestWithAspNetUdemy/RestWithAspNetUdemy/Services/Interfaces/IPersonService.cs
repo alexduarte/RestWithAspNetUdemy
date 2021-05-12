@@ -11,8 +11,8 @@ namespace RestWithAspNetUdemy.Services.Interfaces
         Task<Person> CreateAsync(Person person, CancellationToken cancellationToken);
         Task<Person> GetByIdAsync(Guid id, CancellationToken cancellationToken);
         Task<Person> UpdateAsync(Person person, CancellationToken cancellationToken);
-        Task DeleteAsync(Guid id, CancellationToken cancellationToken);
-        IEnumerable<Person> Get(CancellationToken cancellationToken);
+        Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
+        Task<IEnumerable<Person>> GetAsync(CancellationToken cancellationToken);
 
     }
 }
