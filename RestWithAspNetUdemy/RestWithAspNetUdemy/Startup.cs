@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RestWithAspNetUdemy.Infra.Context;
+using RestWithAspNetUdemy.Repository;
+using RestWithAspNetUdemy.Repository.Interfaces;
 using RestWithAspNetUdemy.Services;
 using RestWithAspNetUdemy.Services.Interfaces;
 
@@ -33,6 +35,7 @@ namespace RestWithAspNetUdemy
             services.AddApiVersioning();
 
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddDbContext<SQLContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:db_rest_with_azure"]));
         }
 
