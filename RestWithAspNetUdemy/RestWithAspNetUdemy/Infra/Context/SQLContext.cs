@@ -13,5 +13,6 @@ namespace RestWithAspNetUdemy.Infra.Context
         public SQLContext(DbContextOptions<SQLContext> opts): base(opts) { } 
         
         public DbSet<Person> Persons { get; set; }
+        public DbSet<Book> Books { get; set; }
     }
 }

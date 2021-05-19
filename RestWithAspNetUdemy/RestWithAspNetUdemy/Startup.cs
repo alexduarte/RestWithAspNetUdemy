@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using RestWithAspNetUdemy.Infra.Context;
 using RestWithAspNetUdemy.Repository;
-using RestWithAspNetUdemy.Repository.Interfaces;
 using RestWithAspNetUdemy.Services;
 using RestWithAspNetUdemy.Services.Interfaces;
 using System;
@@ -51,9 +50,10 @@ namespace RestWithAspNetUdemy
             }
 
             services.AddApiVersioning();
+            services.AddInfra();
+            services.AddServices();
 
             services.AddScoped<IPersonService, PersonService>();
-            services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddDbContext<SQLContext>(opts => opts.UseSqlServer(connectionString));
         }
 
