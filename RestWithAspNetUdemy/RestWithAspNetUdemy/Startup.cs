@@ -30,6 +30,8 @@ namespace RestWithAspNetUdemy
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithAspNetUdemy", Version = "v1" });
             });
 
+            services.AddApiVersioning();
+
             services.AddScoped<IPersonService, PersonService>();
             services.AddDbContext<SQLContext>(opts => opts.UseSqlServer(Configuration["ConnectionStrings:db_rest_with_azure"]));
         }

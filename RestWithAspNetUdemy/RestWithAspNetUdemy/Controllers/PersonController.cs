@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace RestWithAspNetUdemy.Controllers
 {
-    [ApiController]
-    [Route("api/v1/[controller]")]
+    [ApiVersion("1")]
+    [ApiController]    
+    [Route("api/[controller]/v{version:apiVersion}")]
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
