@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RestWithAspNetUdemy.DataComunication.Mapping;
 using RestWithAspNetUdemy.Infra.Context;
 using RestWithAspNetUdemy.Repository;
 using RestWithAspNetUdemy.Services;
@@ -52,9 +53,10 @@ namespace RestWithAspNetUdemy
             services.AddApiVersioning();
             services.AddInfra();
             services.AddServices();
-
-            services.AddScoped<IPersonService, PersonService>();
+            
             services.AddDbContext<SQLContext>(opts => opts.UseSqlServer(connectionString));
+            
+            services.AddAutoMapper(typeof(PersonDtoToPerson));
         }
 
         private void MigrateDataBase(string connectionString)

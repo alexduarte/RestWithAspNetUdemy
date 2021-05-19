@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestWithAspNetUdemy.DataComunication;
 using RestWithAspNetUdemy.Model;
 using RestWithAspNetUdemy.Services.Interfaces;
 using System;
@@ -43,7 +44,7 @@ namespace RestWithAspNetUdemy.Controllers
         }
 
         [HttpPost()]
-        public async Task<IActionResult> CreateAsync([FromBody] Book book, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAsync([FromBody] BookDto book, CancellationToken cancellationToken)
         {
             var bookCreated = await _service.CreateAsync(book, cancellationToken);
 
@@ -53,7 +54,7 @@ namespace RestWithAspNetUdemy.Controllers
         }
 
         [HttpPut()]
-        public async Task<IActionResult> UpdateAsync([FromBody] Book book, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAsync([FromBody] BookDto book, CancellationToken cancellationToken)
         {
             var bookUpdated = await _service.UpdateAsync(book, cancellationToken);
 

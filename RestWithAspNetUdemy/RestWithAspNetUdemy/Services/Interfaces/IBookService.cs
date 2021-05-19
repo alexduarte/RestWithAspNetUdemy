@@ -1,4 +1,5 @@
-﻿using RestWithAspNetUdemy.Model;
+﻿using RestWithAspNetUdemy.DataComunication;
+using RestWithAspNetUdemy.Model;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -8,10 +9,10 @@ namespace RestWithAspNetUdemy.Services.Interfaces
 {
     public interface IBookService
     {
-        Task<Book> CreateAsync(Book book, CancellationToken cancellationToken);
-        Task<Book> GetByIdAsync(Guid id, CancellationToken cancellationToken);
-        Task<Book> UpdateAsync(Book book, CancellationToken cancellationToken);
+        Task<BookDto> CreateAsync(BookDto book, CancellationToken cancellationToken);
+        Task<BookDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<BookDto> UpdateAsync(BookDto book, CancellationToken cancellationToken);
         Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken);
-        Task<IEnumerable<Book>> GetAsync(CancellationToken cancellationToken);
+        Task<IEnumerable<BookDto>> GetAsync(CancellationToken cancellationToken);
     }
 }
